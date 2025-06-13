@@ -1,0 +1,26 @@
+
+body{
+    background-color: rgb(60, 196, 147);
+}
+
+#a{
+    background-color: #457845;
+}
+.x{
+    color : pink;
+    font-size: 30px;
+    
+}
+.y{
+    color : red;
+    font-size: 30px;
+}
+.z{
+    color : blue;
+    font-size: 30px;
+}
+
+/*
+    color --- name, hexa-decimal code, rgb code
+
+*/
