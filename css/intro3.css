@@ -1,0 +1,7 @@
+body{
+    background-color: #afb39f;
+    font-size: 25px;
+}
+p + b{
+    background-color: red;
+}
