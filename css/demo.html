@@ -5,56 +5,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .parent-grid{
-            height: 800px;
-            background-color: gray;
-            width: 700px;
-            margin: 50px;
-            display: grid;
-            grid-template-columns: 1fr 1fr 2fr;
-            grid-template-rows: repeat(2, 1fr) 1fr;
-            grid-gap: 20px;
+        body{
+            background-color: #24252A;
+            margin: 0;
+            padding: 0;
         }
-        .item1{
-            grid-column: 1/4;
-            background-color: #415263;
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
         }
-        .item2{
-            background-color: #41CD41;
-            grid-row-end: 4;
-            /* grid-column-start: 3; */
+        li, a, button{
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            color : #edf0f1;
+            text-decoration: none;
+
         }
-        .item3{
-            background-color: #CAAD41;
+        .header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            width: 85%;
+            margin: 0px auto;
+            background-color: rgba(0,0,0, .7);
+            border-radius: 30px;
+            
         }
-        .item4{
-            background-color: #996633;
-            grid-column: 2/4;
+        .header img{
+            width: 150px;
+            height: 40px;
+            cursor: pointer;
         }
-        .item5{
-            background-color: #adbf23;
+        .nav__links{
+            list-style: none;
         }
-        .item6{
-            background-color: #bb11bd;
+        .nav__links li{
+            display: inline-block;
+            padding: 0px 25px;
         }
-        .item7{
-            /* grid-row-start: 1;
-            grid-row-end: 2; */
-            /* grid-row: 1/2; */
-           
-            background-color: #ea6d19;
+        .nav__links li a{
+            transition:  all 0.3s ease 0s;
+
         }
+        .nav__links li a:hover{
+            color: #2871DE;
+        }
+        button{
+            padding: 9px 25px;
+            background-color: #2871DE;
+            border: none;
+            border-radius: 50px;
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: #24252A;
+        }
+        .header-section{
+            height: 500px;
+            width: 100%;
+            background-image: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url("https://img.freepik.com/free-photo/top-view-creepy-halloween-knife-with-copy-space_23-2148614348.jpg?t=st=1750233606~exp=1750237206~hmac=de5265745ee7960c64d68337feaa072c660aee65317227fd07f72483f4228bf5&w=1060");
+            background-size: cover;
+            /* background-color: red; */
+            padding: 20px;
+        }
+    .hero-content {
+        font-family: Arial, Helvetica, sans-serif;
+      /* position: absolute; */
+      /* top: 35%; */
+      /* left: 50%; */
+      /* transform: translate(-50%, -50%); */
+      text-align: center;
+      /* background-color: rgba(0,0,0, .2); */
+      border-radius: 10px;
+      padding: 40px;
+    }
+    .hero-content h1{
+        color: #edf0f1;
+        font-size: 50px;
+        padding: 10px 0;
+    }
+    .hero-content p{
+        font-size: 15px;
+        padding: 20px;
+        color: #edf0f1;
+    }
+    .hero-content small{
+        color: #edf0f1;
+    }
+    .hero-content a{
+        display: inline-block;
+        background-color: #000;
+        padding: 10px 25px;
+        border-radius: 30px;
+        transition: all .5s ease 0s;
+    }
+    .hero-content a:hover{
+        background-color: #2871DE;
+    }
     </style>
 </head>
 <body>
-    <div class="parent-grid">
-        <div class="item1">1</div>
-        <div class="item2">2</div>
-        <div class="item3">3</div>
-        <div class="item4">4</div>
-        <div class="item5">5</div>
-        <div class="item6">6</div>
-        <div class="item7">7</div>
+    <div class="header-section">
+    <div class="header">
+        <img src="logo.png" />
+        <div class="nav">
+            <ul class="nav__links">
+                <li>
+                    <a href="">Home</a>
+                </li>
+                <li>
+                    <a href="">About</a>
+                </li>
+                <li>
+                    <a href="">Contact</a>
+                </li>
+                <li>
+                    <a href="">Help</a>
+                </li>
+            </ul>
+        </div>
+        <a href="">
+            <button>More</button>
+        </a>
+    </div>
+    <div class="hero-content">
+      <small>Best Training Institute in Indore</small>  
+      <h1>Welcome to My Website</h1>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae, minima dicta neque nisi architecto exercitationem eius inventore.</p>
+      <a href="">More Info</a>
+    </div>
     </div>
 </body>
 </html>

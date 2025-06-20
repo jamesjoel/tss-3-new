@@ -1,0 +1,13 @@
+body{
+    background-image: linear-gradient( #2a054b, #000803);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+.header{
+    width: 85%;
+    height: 80px;
+    background-color: #000;
+    margin: 30px auto;
+    
+}
