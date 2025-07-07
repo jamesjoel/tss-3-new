@@ -1,26 +1,26 @@
-// let gst =(price,slab) => {
-// let ans; 
-// let x;
-// switch (slab) {
-//         case 1: x=price+price*5/100;
-//                 ans=price + x;
-//         break;
-//         case 2:x=price+price*8/100;
-//                 ans=price + x;
-//         break;
-//         case 3:x=price+price*18/100;
-//                 ans=price + x;
-//         break;
-//         case 4:x=price+price*28/100;
-//                 ans=price + x;
-//         break;
+let gst2 =(price,slab) => {
+let ans; 
+let x;
+switch (slab) {
+        case 1: x=price*5/100;
+                ans=price + x;
+        break;
+        case 2:x=price+price*8/100;
+                ans=price + x;
+        break;
+        case 3:x=price+price*18/100;
+                ans=price + x;
+        break;
+        case 4:x=price+price*28/100;
+                ans=price + x;
+        break;
 
-//     default:
-//         break;
-// }
-// console.log (ans);
-// }
-// gst(1800,3);
+    default:
+        break;
+}
+console.log (ans);
+}
+gst2(9523,1);
 
 
 
@@ -41,4 +41,14 @@ switch (slab) {
 }
 console.log (price);
 }
-gst(1800,1);
+// gst(1800,1);
+/*
+10000/1+0.05;
+
+10000/1.05
+
+
+9523
+477
+5
+*/
