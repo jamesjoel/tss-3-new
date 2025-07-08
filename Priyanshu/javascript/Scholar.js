@@ -14,7 +14,7 @@ let scholar=(fee,mark,gender)=>{
         else if(mark>90 && mark<=100 ){
                 discount = 40;              
         }
-        if(gender.toLowerCase() === "female") {
+        if(gender == "female") {
                 discount +=5;
 
         }
@@ -22,6 +22,7 @@ let scholar=(fee,mark,gender)=>{
         return discount;
 
 }
-let discount=scholar(10000,83,"male")
+let discount=scholar(10000,65,"female")
 console.log(discount);
 
+ 
