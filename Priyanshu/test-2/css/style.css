@@ -1,0 +1,10 @@
+.container-fluid img{
+    background-image: linear-gradient(rgba(53, 167, 208,.2),rgb(25, 178, 148,.2));
+    height: 380px;
+    width: 100%;
+    background-size: 100% 100%;
+}
+#card-1{
+    background-image: url(../images/ChatGPT\ Image\ Jul\ 2\,\ 2025\,\ 08_26_20\ AM.png);
+    background-size: 100% 100%;
+}
