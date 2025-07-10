@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Website</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/bootstrap.bundle.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <style>
+    body {
+      overflow-x: hidden;
+    }
+
+    .hero-section {
+      position: relative;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 580px;
+      object-fit: cover;
+      filter: brightness(60%);
+    }
+
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 5%;
+      transform: translateY(-50%);
+      color: white;
+    }
+
+    .hero-form {
+      position: absolute;
+      top: 15%;
+      right: 5%;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 350px;
+      color: white;
+      width: 90%;
+    }
+
+    .bottom-section {
+      position: relative;
+    }
+
+    .bottom-img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      filter: brightness(40%);
+    }
+
+    .bottom-text {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      text-align: center;
+    }
+    #card-1{
+      background-image: url(./images/backgroundimage.jpg);
+      background-size: 100% 100%
+    }
+
+    @media(max-width: 576px) {
+      .hero-text h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero-form {
+        top: 60%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <div class="container-fluid py-2">
+    <div class="container">
+      <div class="row align-items-center">
+        <nav class="navbar navbar-expand-sm">
+          <a href="#" class="navbar-brand">
+            <img src="./images/logo.png" alt="" height="40">
+          </a>
+          <div class="ms-auto">
+            <ul class="nav">
+              <li class="nav-item">
+                <a href="#" class="nav-link text-dark">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link text-dark">Service</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link text-dark">Projects</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link text-dark">Testimonials</a>
+              </li>
+              <li class="nav-item">
+                <button class="btn btn-outline-dark">Contact</button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="container-fluid hero-section">
+    <img src="./images/backgroundimage.jpg" class="hero-img" alt="Background Image">
+    <div class="hero-text">
+      <h1>Consultation,<br> Design,<br> & Marketing</h1>
+    </div>
+    <div class="hero-form">
+      <h3>Get a Free Consultation</h3>
+      <input type="text" class="form-control my-2" placeholder="Enter Your Name">
+      <input type="text" class="form-control my-2" placeholder="Enter Email Address">
+      <input type="text" class="form-control my-2" placeholder="Enter Mobile No">
+      <input type="text" class="form-control my-2" placeholder="Enter Area, City">
+      <button class="btn btn-light w-100 mt-2">Get Quick Quote</button>
+    </div>
+  </div>
+
+  <!-- Our Project -->
+  <div class="text-center mt-5">
+    <h2 class="text-primary">Our Project</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio numquam pariatur error nisi magni debitis.</p>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card mt-4">
+          <div class="card-header" style="height: 200px; background-color: #eee;" id="card-1"></div>
+          <div class="card-body">
+            <h5 class="text-primary">Consultant</h5>
+            <p>Phoneix, Indore</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-outline-primary w-100">Read More</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card mt-4">
+          <div class="card-header" style="height: 200px; background-color: #eee;" id="card-1"></div>
+          <div class="card-body">
+            <h5 class="text-primary">Consultant</h5>
+            <p>Phoneix, Indore</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-outline-primary w-100">Read More</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card mt-4">
+          <div class="card-header" style="height: 200px; background-color: #eee;" id="card-1"></div>
+          <div class="card-body">
+            <h5 class="text-primary">Consultant</h5>
+            <p>Phoneix, Indore</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-outline-primary w-100">Read More</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card mt-4">
+          <div class="card-header" style="height: 200px; background-color: #eee;" id="card-1"></div>
+          <div class="card-body">
+            <h5 class="text-primary">Consultant</h5>
+            <p>Phoneix, Indore</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-outline-primary w-100">Read More</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="text-center pt-5">
+    <h3 class="text-primary">Happy Clients</h3>
+  </div>
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-3">
+        <div class="card mt-4 text-center">
+          <img src="./images/backgroundimage.jpg" class="rounded-circle mx-auto mt-3"
+            style="height: 100px; width: 100px;" alt="">
+          <div class="card-body">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos distinctio cupiditate.</p>
+            <h5 class="text-primary">Rowahan Smith</h5>
+            <p>CEO, Foreclosure</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card mt-4 text-center">
+          <img src="./images/backgroundimage.jpg" class="rounded-circle mx-auto mt-3"
+            style="height: 100px; width: 100px;" alt="">
+          <div class="card-body">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos distinctio cupiditate.</p>
+            <h5 class="text-primary">Rowahan Smith</h5>
+            <p>CEO, Foreclosure</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card mt-4 text-center">
+          <img src="./images/backgroundimage.jpg" class="rounded-circle mx-auto mt-3"
+            style="height: 100px; width: 100px;" alt="">
+          <div class="card-body">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos distinctio cupiditate.</p>
+            <h5 class="text-primary">Rowahan Smith</h5>
+            <p>CEO, Foreclosure</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card mt-4 text-center">
+          <img src="./images/backgroundimage.jpg" class="rounded-circle mx-auto mt-3"
+            style="height: 100px; width: 100px;" alt="">
+          <div class="card-body">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos distinctio cupiditate.</p>
+            <h5 class="text-primary">Rowahan Smith</h5>
+            <p>CEO, Foreclosure</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Learn More Section -->
+  <div class="container-fluid bottom-section mt-5">
+    <img src="./images/officeimg.jpg" class="bottom-img" alt="Office Image">
+    <div class="bottom-text">
+      <h4>Learn more about our listing process,<br> as well as our staging and design work</h4>
+      <button class="btn btn-light mt-3 px-4">Learn more</button>
+    </div>
+    <div class="contaner-fluid bg-primary">
+      <div class="container">
+        <div class="row">
+
+          
+          
+          <div class="col-md-12 col-sm-12 col-12">
+            <nav class="navbar navbar-expand-sm bg-primary">
+              <ul class="nav">
+                <li class="nav-item">
+                  <a href="" class="nav-link text-white" style="padding-left: 0px;"> Home</a>
+                </li>
+                <li class="nav-item">
+                  <a href="" class="nav-link text-white"> Services</a>
+                </li>
+                <li class="nav-item">
+                  <a href="" class="nav-link text-white">Projects</a>
+                </li>
+                <li class="nav-item">
+                  <a href="" class="nav-link text-white">Testimoniels</a>
+                </li>
+                <li class="nav-item">
+                  <a href="" class="nav-link text-white"> Contact</a>
+                </li>
+                <li class="nav-item">
+                  <a href="" class="nav-link text-white " style="padding-left: 280px;"> Subscribe Us</a>
+                </li>
+                <input type="text" placeholder="Enter Email Address" style="border-radius: 5px;">
+                <input type="text" placeholder="Subscribe" style="border-radius: 5px;">
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid bg-dark" >
+      <div class="container">
+        <div class="row">
+
+          
+          
+          <div class="col-md-12 col-sm-12 col-12">
+            <nav class="navbar navbar-expand-sm bg-dark">
+              <ul class="nav">
+                <li class="nav-item">
+                  <a href="" class="nav-link text-white"><p class="ms-5">+91 7477285995</p></a>
+                </li>
+                <li class="nav-item">
+                  <a href="" class="nav-link text-white " style="padding-left: 850px;"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a href="" class="nav-link text-white"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a href="" class="nav-link text-white"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                </li>
+                
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+  </div>
+
+
+  </div>
+
+</body>
+
+</html>
