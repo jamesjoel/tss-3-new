@@ -1,0 +1,17 @@
+.navbar-brand img{
+    height: 50px;
+    width: 50px;
+}
+.btn{
+    background-color: orange;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#bac{
+    height: 400px;
+    background-image: linear-gradient(rgba(255,22,56,.5),rgba(42,255,50,.2));
+}
+#card-1{
+    background-image: url(./images/backgroundimage.jpg);
+    background-size: 100% 100%;
+}
