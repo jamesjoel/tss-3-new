@@ -1,12 +1,14 @@
+import Student from '../models/Student.js'
 
-let SelectAllStudent = (req, res)=>{
-    res.send("welcome");
+let SelectAllStudent = async (req, res)=>{
+    let result = await Student.find();
+    res.send(result);
 }
 
-let SaveStudent = (req, res)=>{
-    // console.log(req.body);
-    let {name, age, fee, city, dob} = req.body;
-    res.send({message : "Data Saved"});
+let SaveStudent = async(req, res)=>{
+    // req.body
+    await Student.create(req.body);
+    res.send({message : "Data Saved into Mongodb"});
 }
 
 export {SelectAllStudent, SaveStudent}
