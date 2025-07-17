@@ -1,5 +1,6 @@
 import express from 'express';
 import AllRoutes from './routes/AllRoutes.js'
+import { PORT } from './config/config.js';
 
 const app = express();
 
@@ -10,7 +11,12 @@ app.use(AllRoutes);
 
 
 
-const port = 3000;
-app.listen(port, ()=>{
-    console.log("Server running with port ", port);
+// const port = 3000;
+app.listen(PORT, ()=>{
+    console.log("Server running with port ", PORT);
 })
+
+// username : jamessteppingstone
+// password : RcqeDYUOzKtzHEt0
+
+// mongodb+srv://jamessteppingstone:<db_password>@cluster0.juoapks.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
