@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <style>
+            body{
+                margin: 0;
+                padding: 0;
+            }
+            .box{
+                height: 150px;
+                width: 150px;
+                background-color: red;
+                animation-duration: 2s;
+                animation-name: demo;
+                /* position: relative; */
+                animation-iteration-count: infinite;
+            }
+            
+            @keyframes demo {
+                0%{ transform: scale(1);}
+                50%{ transform: scale(1.2);}
+                100%{ transform: scale(1);}
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box"></div>
+    </body>
+</html>
