@@ -1,7 +1,27 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {NavLink} from 'react-router-dom'
+import { useLocation } from 'react-router-dom' 
+
+//             window.scrollTo({ top: "50px", left: 0, behavior: 'smooth' })
 
 const Header = () => {
+  let location = useLocation();
+  
+  
+  useEffect(()=>{
+    let x = location.pathname; // 
+    let arr = x.split("/"); //          /turfs/sdfgsdgs
+    if(arr[1]=="turfs"){
+
+       window.scrollTo({ top: 450, left: 0, behavior: 'smooth' })
+      }else{
+        
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    }
+    
+  },[location])
+
+
   return (
     <header id="header">
     <nav className="header-top">
@@ -54,19 +74,13 @@ const Header = () => {
               {
                 localStorage.getItem("business_access")
                 ?
-                <li className="nav-item px-3 py-1 py-lg-0 dropdown">
-                <a className="nav-link p-0 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                  aria-expanded="false">{localStorage.getItem("business_name")}</a>
-                <ul className="dropdown-menu dropdown-menu-end animate slide mt-3 border-0 shadow">
-                  <li><NavLink to="/business/login" className="dropdown-item">My Turfs </NavLink>
+                <li>
+                  <NavLink to="/business/myaccount" className="nav-link p-0">{localStorage.getItem("business_name")} </NavLink>
                   </li>
-                  <li><NavLink to="/business/signup" className="dropdown-item">My Booking </NavLink>
-                  </li>
-                  <li><NavLink to="/business/logout" className="dropdown-item">Logout </NavLink>
-                  </li>
-                  
-                </ul>
-              </li>
+              :
+              localStorage.getItem("user_access")
+              ?
+              ''
               :
               <li className="nav-item px-3 py-1 py-lg-0 dropdown">
                 <a className="nav-link p-0 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -96,10 +110,15 @@ const Header = () => {
                  <li className="nav-item px-3 py-1 py-lg-0">
                 <NavLink className="nav-link p-0" to="/myaccount">My Account</NavLink>
               </li>
+              
               <li className="nav-item px-3 py-1 py-lg-0">
                 <NavLink className="nav-link p-0" to="/logout">Logout</NavLink>
               </li>
                 </>
+                :
+                localStorage.getItem("business_access")
+                ?
+                ''
                 :
                 <>
                  <li className="nav-item px-3 py-1 py-lg-0">
@@ -128,3 +147,10 @@ const Header = () => {
 }
 
 export default Header
+
+/*
+  let a = "rohit-amar-vijay-james-ajay";
+  let arr = a.split("-");
+
+
+*/

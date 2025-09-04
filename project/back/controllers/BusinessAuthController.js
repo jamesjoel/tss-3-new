@@ -11,6 +11,7 @@ let Auth = async(req, res)=>{
         if(result[0].password == sha1(password))
         {
             let busobj = {_id : result[0]._id, email : result[0].email};
+            
             let token = jwt.sign(busobj, "kuch bhi");
             res.send({success:true, token : token, name : result[0].name});
         }else{

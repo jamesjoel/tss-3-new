@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -17,9 +18,7 @@ const Footer = () => {
                 </svg><a href="#"> Home</a>
               </li>
               <li className="fw-medium text-capitalize d-flex align-items-center">
-                <svg className="text-primary me-1" width="16" height="16">
-                  <use xlinkHref="#check-circle"></use>
-                </svg><a href="#"> About Us</a>
+                <NavLink to="/about"> About Us</NavLink>
               </li>
               <li className="fw-medium text-capitalize d-flex align-items-center">
                 <svg className="text-primary me-1" width="16" height="16">

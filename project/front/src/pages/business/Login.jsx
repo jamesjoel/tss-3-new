@@ -25,7 +25,7 @@ const Login = () => {
                 {
                     localStorage.setItem("business_access", response.data.token);
                     localStorage.setItem("business_name", response.data.name);
-                    navigate("/");
+                    navigate("/business/myaccount");
                 }
                 else{
                     if(response.data.errType==1){

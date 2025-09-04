@@ -27,7 +27,7 @@ const Login = () => {
                 {
                     localStorage.setItem("user_access", response.data.token);
                     localStorage.setItem("name", response.data.name);
-                    navigate("/");
+                    navigate("/myaccount");
                 }
 
 

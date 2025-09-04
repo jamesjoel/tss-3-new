@@ -12,13 +12,18 @@ const Home = () => {
   let [allTurf, setAllTurf] = useState([]);
 
   useEffect(()=>{
-    
+
     axios.get(`${API_URL}/turf`)
     .then(response=>{
       setAllTurf(response.data);
+      console.log("##########");
     })
 
   },[])
+
+  useEffect(()=>{
+    console.log("*****")
+  })
 
 
 
@@ -48,7 +53,8 @@ const Home = () => {
           <div className="card-item">
             <div className="card  mt-4">
               <div className="card-image position-relative">
-                <a href="index.html"><img src={"http://localhost:3000/images/"+item.image} alt="post-img" className="post-image img-fluid" style={{height :"250px", width : "100%"}}/></a>
+                {/* <a href="index.html"><img src={"http://localhost:3000/images/"+item.image} alt="post-img" className="post-image img-fluid" style={{height :"250px", width : "100%"}}/></a> */}
+                <a href="index.html"><img src="https://www.lawnpop.com/wp-content/uploads/2024/01/playground-turf-a-smart-and-safe-choice-for-your-outdoor-space.jpg" alt="post-img" className="post-image img-fluid" style={{height :"250px", width : "100%"}}/></a>
               </div>
             </div>
             <div className="card-body p-0 mt-2">
@@ -57,7 +63,7 @@ const Home = () => {
                 <h5 className="mt-2">{item.title}</h5>
               </a>
               <p className='fw-bold'>&#8377; {item.price.toFixed(2)}</p>
-              <NavLink to="/turfs" className='btn btn-success btn-sm'>Book Now</NavLink>
+              <NavLink to={"/turfs/"+item._id} className='btn btn-success btn-sm'>Book Now</NavLink>
             </div>
           </div>
         </div>

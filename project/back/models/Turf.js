@@ -6,7 +6,12 @@ const TurfSchema = mongoose.Schema({
     address : String,
     contact : String,
     image : String,
-    timing : {type : String, default : ""},
+    detail : String,
+    timing_open : {type : String, default : ""},
+    timing_close : {type : String, default : ""},
+    lat : Number,
+    long : Number,
+    businessId : { type : mongoose.Schema.Types.ObjectId, ref : "business" }
 },{collection : "turf", timestamps : true})
 
 const Turf = mongoose.model("turf", TurfSchema);

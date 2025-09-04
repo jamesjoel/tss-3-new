@@ -1,19 +1,103 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Hero from '../components/Hero'
+import {useNavigate, useParams} from 'react-router-dom'
+import axios from 'axios'
+import { API_URL } from '../config/API'
+import './Turfs.css'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import './DatePicker.css'
+import Modal from 'react-bootstrap/Modal';
 
 const Turfs = () => {
+    let navigate = useNavigate();
+    let [show, setShow] = useState(false)
+    const [startDate, setStartDate] = useState(new Date());
+    let [turf, setTurf] = useState({});
+    let [timingLoopArr, setTimingLoopArr] = useState([]);
+    let [timeClose, setTimeClose] = useState(null);
+    let [timeOpen, setTimeOpen] = useState(null);
+    let param = useParams();
+    let [price, setPrice] = useState(0);
+
+    let currTime = new Date().getHours();
+    // console.log(currTime)
+
+    useEffect(()=>{
+        axios
+        .get(`${API_URL}/turf/${param.id}`)
+        .then(response=>{
+            // console.log(response.data)
+            setTurf(response.data);
+            let timing_open = response.data.timing_open.split(" "); // ["12:00", "PM"]
+            let timing_close = response.data.timing_close.split(" "); // ["7:00", "PM"]
+
+            let timing_open_hr = parseInt(timing_open[0].split(":")[0]); // 12
+            let timing_close_hr = parseInt(timing_close[0].split(":")[0]); // 7
+
+            setTimeOpen(timing_open_hr)
+            setTimeClose(timing_close_hr)
+            
+            if(timing_open[1]== "PM"){
+                if(timing_open_hr == 12){
+                    timing_open_hr = 12;
+                }else{
+                    timing_open_hr += 12; // 
+
+                }
+            }
+            
+            if(timing_close[1] == "PM"){
+                timing_close_hr += 12; // 19
+            }
+            let diff_timing = timing_close_hr-timing_open_hr;
+            // return;
+            let timing_arr = Array.from({length:diff_timing}).fill("");
+            // console.log(timing_arr)
+            setTimingLoopArr(timing_arr);
+
+        })
+    },[])
+
+
+    let handlePirce = (e)=>{
+        // console.log(e.target.checked);
+        if(e.target.checked){
+            setPrice(++price);
+        }else{
+            setPrice(--price);
+
+        }
+    }
+
+    const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  let isLoggedIn = ()=>{
+    if(localStorage.getItem("user_access")){
+        navigate("/book");
+    }else{
+        handleShow();
+    }
+  }
+
+  let goToLogin = ()=>{
+    handleClose();
+    navigate("/login")
+  }
+
   return (
     <>
     <Hero />
     <div className="container my-5">
         <div className="row">
             <div className="col-md-8">
-                <h3>Club 19</h3>
+                <h3>{turf.title}</h3>
                 <p>
-                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                    &nbsp;AB. Road, Indore
+                    <i className="fa fa-map-marker" aria-hidden="true"></i>
+                    &nbsp;{turf.address}
                 </p>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptate hic dolor tempora iste maiores laborum, praesentium sed totam ex ut voluptatum dolorum nesciunt! Vel ipsum dignissimos aliquam. Perferendis, deserunt rerum!</p>
+                <p>{turf.detail}</p>
                 <h4 className='h4 mt-5'>Gallery</h4>
                 <img src='http://localhost:3000/images/2.jpg' style={{width : "100%", height : "450px"}} />
             </div>
@@ -27,31 +111,84 @@ const Turfs = () => {
                         Booking Date
                     </div>
                     <div className="card-body">
-                        <input type='text' className='form-control'/>
+                        <DatePicker style={{ border: "1px solid red", padding: "5px" }} selected={startDate} showIcon dateFormat="dd/MMM/YYYY" minDate={new Date()} onChange={(date) => setStartDate(date)}/>
                     </div>
                 </div>
                 <div className='card my-5'>
                     <div className='card-header'>
-                        Booking Timing
+                        Booking Timing ({turf.timing_open} - {turf.timing_close})
                     </div>
-                    <div className="card-body">
-                        <input type='text' className='form-control'/>
+                    <div className="card-body timing-body">
+                        <ul className="ks-cboxtags">
+                            
+                            {
+                                timingLoopArr.map((item, index)=>{
+                                    return(
+                                        <li key={index}>
+                                            {
+                                                timeOpen+index <= currTime && startDate.getDate() === new Date().getDate() && startDate.getMonth() === new Date().getMonth() && startDate.getFullYear() === new Date().getFullYear()
+                                                ?
+                                                <>
+                                            <input disabled={true} className='disabled' type="checkbox" id={"checkboxOne"+index} value="Rainbow Dash"/>
+                                            <label htmlFor={"checkboxOne"+index}>{(timeOpen+index) < 13 ? (timeOpen+index) : (timeOpen+index-12) }:00{(timeOpen+index) < 13 ? "AM" : "PM"}</label>
+                                            </>    
+                                                :
+                                            <>
+                                            <input onChange={(e)=>handlePirce(e)} type="checkbox" id={"checkboxOne"+index} value="Rainbow Dash"/>
+                                            <label htmlFor={"checkboxOne"+index}>{(timeOpen+index) < 13 ? (timeOpen+index) : (timeOpen+index-12) }:00{(timeOpen+index) < 13 ? "AM" : "PM"}</label>
+                                            </>
+
+                                            }
+
+                                        </li>
+                                    )
+                                })
+                            }
+                            
+                            
+    
+                    </ul>
                     </div>
                 </div>
                 <div className='card my-5'>
                     <div className='card-header'>
-                        Price
+                        Price (&#8377;{turf.price}/hr)
                     </div>
                     <div className="card-body">
-                        &#8377; 2400.00
+                        Amount : { turf ? (price*turf.price).toFixed(2) : 0.00}
                     </div>
                 </div>
-                <button className='btn btn-primary'>Book Now</button>
+                <button onClick={isLoggedIn} className='btn btn-primary'>Book Now</button>
+            </div>
+            
+        </div>
+
+        <div className="row">
+            <div className="col-md-12 my-4">
+                 <iframe src={`https://maps.google.com/maps?q=${turf.lat},${turf.long}&z=15&output=embed`} width="600" height="450" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                
             </div>
         </div>
     </div>
+
+    
+                            
+     <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Message</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>If You want to Book this slot, you have to Login First</Modal.Body>
+        <Modal.Footer>
+             <button onClick={goToLogin} className='btn btn-success btn-sm'>Login</button>               
+             <button onClick={handleClose} className='btn btn-danger btn-sm'>Close</button>               
+        </Modal.Footer>
+      </Modal>                       
+
+
     </>
   )
 }
+
+
 
 export default Turfs
