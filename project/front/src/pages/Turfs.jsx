@@ -11,6 +11,11 @@ import Modal from 'react-bootstrap/Modal';
 
 const Turfs = () => {
     let navigate = useNavigate();
+
+    let [isBook, setIsBook] = useState(false);
+
+    let [discount, setDiscount] = useState(0);
+
     let [show, setShow] = useState(false)
     const [startDate, setStartDate] = useState(new Date());
     let [turf, setTurf] = useState({});
@@ -19,6 +24,7 @@ const Turfs = () => {
     let [timeOpen, setTimeOpen] = useState(null);
     let param = useParams();
     let [price, setPrice] = useState(0);
+    let [timingSlotArr, setTimingSlotArr] = useState([]);
 
     let currTime = new Date().getHours();
     // console.log(currTime)
@@ -61,10 +67,12 @@ const Turfs = () => {
 
 
     let handlePirce = (e)=>{
-        // console.log(e.target.checked);
+        let time = e.target.value;
         if(e.target.checked){
+            setTimingSlotArr(prevTime=>[...prevTime, time]);
             setPrice(++price);
         }else{
+            setTimingSlotArr(prevTime=>prevTime.filter(item=> item!=time));
             setPrice(--price);
 
         }
@@ -75,7 +83,8 @@ const Turfs = () => {
 
   let isLoggedIn = ()=>{
     if(localStorage.getItem("user_access")){
-        navigate("/book");
+        // navigate("/book");
+        setIsBook(true)
     }else{
         handleShow();
     }
@@ -86,9 +95,33 @@ const Turfs = () => {
     navigate("/login")
   }
 
+  let handleBook = (amount, full_amount, remain)=>{
+    // console.log(amount) // 2900
+    // console.log(full_amount) // 2900
+    // console.log(remain) // 0
+    let turfData = { 
+            turf_id : param.id, 
+            date : startDate, 
+            slot : timingSlotArr, 
+            amount : full_amount,
+            adv_amount : amount,
+            remain_amount : remain
+        }
+    axios
+    .post(`${API_URL}/booking`, turfData, {headers : { Authorization : localStorage.getItem("user_access") }})
+    .then(response=>{
+        // console.log(response.data);
+        navigate("/myaccount")
+    })
+  }
+
+
   return (
     <>
     <Hero />
+   {
+    isBook==false
+    ?
     <div className="container my-5">
         <div className="row">
             <div className="col-md-8">
@@ -134,7 +167,7 @@ const Turfs = () => {
                                             </>    
                                                 :
                                             <>
-                                            <input onChange={(e)=>handlePirce(e)} type="checkbox" id={"checkboxOne"+index} value="Rainbow Dash"/>
+                                            <input onChange={(e)=>handlePirce(e)} type="checkbox" id={"checkboxOne"+index} value={((timeOpen+index) < 13 ? (timeOpen+index) : (timeOpen+index-12)) +":00"+((timeOpen+index) < 13 ? "AM" : "PM")}/>
                                             <label htmlFor={"checkboxOne"+index}>{(timeOpen+index) < 13 ? (timeOpen+index) : (timeOpen+index-12) }:00{(timeOpen+index) < 13 ? "AM" : "PM"}</label>
                                             </>
 
@@ -170,6 +203,93 @@ const Turfs = () => {
             </div>
         </div>
     </div>
+    :
+    <div className='container my-5'>
+        <div className="row">
+            <div className="col-md-12">
+                <h4 className='text-center'>Confirm Payment</h4>
+                <hr />
+                <div className="row">
+                    <div className="col-md-8">
+                        <div className="alert alert-secondary">
+                            <table className="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Turf Name</td>
+                                        <td>{turf.title}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Booking Date</td>
+                                        <td>{startDate.getDate()+"/"+(startDate.getMonth()+1)+"/"+startDate.getFullYear()}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Time Slot</td>
+                                        <td>{timingSlotArr.map(item=>item+",")}({timingSlotArr.length})</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Coupon Code</td>
+                                        <td style={{width : "500px"}}>
+                                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet. <button disabled={discount==0 ? false:true} onClick={()=>setDiscount(100)} className='btn btn-info btn-sm'>Apply</button></p>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div className="col-md-4">
+                        <div className="alert alert-secondary">
+                            <table className='table'>
+                                <tbody>
+                                    <tr>
+                                        <td>Per Slot Amount</td>
+                                        <td>{turf.price}.00</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>Slot Amount</td>
+                                        <td>{timingSlotArr.length * turf.price}.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Discount</td>
+                                        <td>{discount}.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Final Amount</b></td>
+                                        <td><b>{(timingSlotArr.length * turf.price) - discount }.00</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td colSpan="2">
+                                            Amount to Be Paid
+                                            <br />
+                                            <button onClick={()=>handleBook(((timingSlotArr.length * turf.price) - discount), ((timingSlotArr.length * turf.price) - discount), 0)} className='m-2 btn btn-secondary btn-sm'>Full Amount 
+                                            ({(timingSlotArr.length * turf.price) - discount }.00)
+
+                                            </button>
+                                            <br />
+                                            
+                                            <button onClick={()=>handleBook(    ((timingSlotArr.length * turf.price) - discount) * 25/100,  ((timingSlotArr.length * turf.price) - discount),   ( ((timingSlotArr.length * turf.price) - discount) -  ((timingSlotArr.length * turf.price) - discount) * 25/100 )     )} className='m-2 btn btn-secondary btn-sm'>25% Amount
+                                                
+                                                ({((timingSlotArr.length * turf.price) - discount) * 25/100 }.00)
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   }
+        
+    
+    
+   
+
+
 
     
                             

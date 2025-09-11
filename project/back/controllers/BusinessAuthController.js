@@ -1,4 +1,5 @@
 import Business from '../models/Business.js'
+import { JWT_KEY } from '../config/config.js'
 import sha1 from 'sha1'
 import jwt from 'jsonwebtoken'
 
@@ -12,7 +13,7 @@ let Auth = async(req, res)=>{
         {
             let busobj = {_id : result[0]._id, email : result[0].email};
             
-            let token = jwt.sign(busobj, "kuch bhi");
+            let token = jwt.sign(busobj, JWT_KEY);
             res.send({success:true, token : token, name : result[0].name});
         }else{
 

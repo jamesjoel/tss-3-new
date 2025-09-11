@@ -1,5 +1,6 @@
 import Turf from "../models/Turf.js";
 import jwt from 'jsonwebtoken'
+import { JWT_KEY } from "../config/config.js";
 
 let GetAllTurf = async(req, res)=>{
     let result = await Turf.find().populate("businessId").exec();
@@ -15,7 +16,7 @@ let SaveTurf = async(req, res)=>{
 
     if(req.headers.authorization){ // token aaya he
         let token = req.headers.authorization;
-        let bussobj = jwt.decode(token, "kuch bhi")
+        let bussobj = jwt.decode(token, JWT_KEY)
         if(bussobj){ // token correct he
             // console.log(bussobj);
             req.body.businessId = bussobj._id;
