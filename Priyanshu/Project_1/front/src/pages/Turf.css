@@ -1,0 +1,95 @@
+
+ul.ks-cboxtags {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    /* padding: 20px; */
+}
+ul.ks-cboxtags li input[disabled] + label{
+  background-color:#ccc !important;
+  border-color: #FFFF !important;
+}
+
+.equal-btn {
+  width: 250px;           /* fix width (aap apne design ke hisab se set kar lo) */
+  min-height: 0px;       /* dono button ki height same ho */
+  display: flex;
+  flex-direction: column; /* text ek ke niche ek */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  white-space: normal;    /* text wrap allow */
+  word-wrap: break-word;
+  margin-bottom: 1px; 
+
+}
+
+
+ul.ks-cboxtags li{
+  display: inline;
+}
+ul.ks-cboxtags li label{
+    display: inline-block;
+    background-color: rgba(255, 255, 255, .9);
+    border: 2px solid rgba(0, 0, 0, .3);
+    color: black;
+    border-radius: 25px;
+    white-space: nowrap;
+    margin: 3px 0px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 95px;
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+    transition: all .2s;
+    
+}
+.timing-body{
+  height: 180px !important;
+  overflow-y: scroll;
+}
+
+ul.ks-cboxtags li label {
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 5px 10px;
+}
+
+ul.ks-cboxtags li label::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 12px;
+    padding: 2px 6px 2px 2px;
+    transition: transform .3s ease-in-out;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked + label::before {
+    transform: rotate(-360deg);
+    transition: transform .3s ease-in-out;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked + label {
+    border: 2px solid #1bdbf8;
+    background-color: #12bbd4;
+    color: #fff;
+    transition: all .2s;
+}
+
+ul.ks-cboxtags li input[type="checkbox"] {
+  display: absolute;
+}
+ul.ks-cboxtags li input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+ul.ks-cboxtags li input[type="checkbox"]:focus + label {
+  border: 2px solid black;
+}
